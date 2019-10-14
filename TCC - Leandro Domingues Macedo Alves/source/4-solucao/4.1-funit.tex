@@ -1,7 +1,7 @@
 \hypertarget{fence-unit-test}{%
 \section{Testes unitários com FUnit}\label{fence-unit-test}}
 
-O \emph{framework} \emph{Fence Unit Test}, ou \emph{FUnit}, foi implementado para auxiliar os desenvolvedores de sistemas \emph{Fence} na escrita de testes unitários. Conforme mostrado pela figura \ref{fig:funit-esq} de forma simplificada, definido o método que deseja ser testado como entrada, o desenvolvedor escreve o teste utilizando as ferramentas disponibilizadas pelo \emph{FUnit}, para no final ser fornecido um relatório com o resultado.
+O \emph{framework} \emph{Fence Unit Test}, ou \emph{FUnit}, foi implementado para auxiliar os desenvolvedores de sistemas \emph{Fence} na escrita de testes unitários. Conforme mostrado de forma simplificada pela figura \ref{fig:funit-esq}, definido o método que deseja ser testado como entrada, o desenvolvedor escreve o teste utilizando as ferramentas disponibilizadas pelo \emph{FUnit}, para no final ser fornecido um relatório com o resultado.
 
 \begin{figure}[H]
     \centering
@@ -21,12 +21,12 @@ Estendendo a classe base do \emph{phpunit} por meio do princípio da herança, s
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=14cm]{source/4-solucao/images/phpunit-framework.png}
+    \includegraphics[width=13cm]{source/4-solucao/images/phpunit-framework.png}
     \caption{Exemplo simplificado de um teste unitário.}
     \label{fig:phpunit-framework}
 \end{figure}
 
-No contexto da teoria de testes, cada método testador é definido como \emph{~test case}, ou caso de teste, enquanto o agrupamento de \emph{test cases} por sua vez é chamado de \emph{test suite}, ou suíte de testes. É de costume um ou mais \emph{test cases} validarem cada método de uma classe e o conjunto de todos os \emph{test cases} que percorrem a classe ser um \emph{test suite}. Quando executado, o \emph{phpunit} percorre os \emph{test suites} desejados e exibe os resultados de todos os \emph{test cases} presentes.
+No contexto da teoria de testes, cada método testador é definido como \emph{~test case}, ou caso de teste, enquanto o agrupamento de \emph{test cases} por sua vez é chamado de \emph{test suite}, ou suíte de testes. É de costume um ou mais \emph{test cases} validarem cada método de uma classe, e o conjunto de todos os \emph{test cases} que percorrem a classe ser um \emph{test suite}. Quando executado, o \emph{phpunit} percorre os \emph{test suites} desejados e exibe os resultados de todos os \emph{test cases} presentes.
 
 \hypertarget{busca-por-padronizacao-e-concisao}{%
 \subsubsection{Busca por padronização e concisão}\label{busca-por-padronizacao-e-concisao}}
