@@ -1,0 +1,79 @@
+\documentclass[grad,numbers]{style/coppe}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{minted}
+\usepackage{caption}
+\usepackage{import}
+\usepackage{indentfirst}
+
+\setminted{
+    linenos=true,
+    autogobble,
+}
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}
+
+\makelosymbols
+\makeloabbreviations
+
+\begin{document}
+  \title{Ambiente ágil de testes automáticos em nuvem para os sistemas web FENCE dos experimentos do CERN}
+  \foreigntitle{}
+  \author{Leandro}{Domingues Macedo Alves}
+  \advisor{}{Carmen}{Lucia Lodi Maidantchik}{D.Sc.}
+  \advisor{Prof.}{Flávio}{Luis de Mello}{D.Sc.}
+
+  \examiner{}{Carmen Lucia Lodi Maidantchik}{D.Sc.}
+  \examiner{Prof.}{Flávio Luis de Mello}{D.Sc.}
+  \examiner{Prof.}{Jomar Gozzi}{D.Sc.}
+  \examiner{Prof.}{Carlos José Ribas D'Avila}{D.Sc.}
+  
+  \department{ECA}
+  \date{10}{2019}
+
+  \keyword{Sistemas \textit{Web}}
+  \keyword{Testes automáticos}
+  \keyword{Integração Contínua}
+  \keyword{\textit{CERN}}
+
+  \maketitle
+
+  \frontmatter
+  
+  \makecatalog
+ 
+  \chapter*{Agradecimentos}
+    
+  \indent
+  *agradecimentos*
+  
+  \import{source/}{abstract.tex}
+
+  \tableofcontents
+  \listoffigures
+  \printlosymbols
+  \printloabbreviations
+
+  \mainmatter
+
+  \import{source/1-introducao/}{1.0-all.tex}
+  
+  \import{source/2-contextualizacao/}{2.0-all.tex}
+  
+  \import{source/3-fundamentacao/}{3.0-all.tex}
+
+  \import{source/4-solucao/}{4.0-all.tex}
+
+  \import{source/5-resultados/}{5.0-all.tex}
+
+  \import{source/6-conclusao/}{6.0-all.tex}
+
+  \backmatter
+  \nocite{*}
+  \bibliography{source/bibliografia/all}\label{bibliografia}
+  \bibliographystyle{style/coppe-unsrt}
+\end{document}

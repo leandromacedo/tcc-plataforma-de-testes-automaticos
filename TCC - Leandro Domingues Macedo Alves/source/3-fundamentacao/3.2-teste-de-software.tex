@@ -1,0 +1,116 @@
+\hypertarget{testes-de-software}{%
+\section{Testes de software}\label{testes-de-software}}
+Este subcapítulo foca na teoria de testes. Testes de software fazem parte do processo de qualidade de software, e avaliam atributos como funcionalidade, confiabilidade e usabilidade. Para minimizar o risco de usuários experienciarem dificuldades em um sistema, é primordial a realização de testes.
+
+Inicialmente é discutida a motivação para o desenvolvimento de testes assim como os seus principais conceitos. Em seguida, é abordado o conceito do plano de testes, e as principais classificações existentes, dissertando sobre as diferenças entre testes manuais e automáticos.
+
+\hypertarget{motivacao-para-testes}{%
+\subsubsection{Motivação para testes}\label{motivacao-para-testes}}
+
+Com a implementação de sistemas utilizando o novo padrão de interfaces com o \emph{Fence}, obteve-se a oportunidade de analisar outras etapas presentes no processo de desenvolvimento de software, na possibilidade de aprimorar alguma delas. Nesta análise, constatou-se que a realização de testes manuais pelos desenvolvedores consumia um tempo considerável durante a rotina de desenvolvimento, e a possibilidade de uso de testes automáticos poderia otimizar este processo.
+
+Com a documentação em plano de testes se torna possível definir e priorizar o que será testado \cite{leung}. O desenvolvedor, em seu ambiente de desenvolvimento, segue uma série de instruções explicitadas neste plano de testes a fim de garantir a estabilidade do sistema com suas modificações feitas. É comum estas verificações serem feitas apenas com testes manuais para sistemas pequenos ou de pouca longevidade, pois em certos casos não ocorre compensação com o esforço adicional da implementação de testes automáticos. Entretanto para projetos maiores ou de longa duração, a verificação recorrente com somente testes manuais torna-se onerosa e inviável. A exemplo de código orientado a objetos, uma pequena correção de poucos minutos de uma classe pai pode significar horas de testes manuais em diversos sistemas.
+
+Outra motivação está no impacto causado pelas atualizações de software. À medida que um software está estável e em produção durante um longo período de tempo, um dos desafios do desenvolvedor passa a ser o desenvolvimento de novas funcionalidades e o conserto de anomalias \cite{gupta}. Interações com o programa podem se tornar algo desafiador, visto que inserções ou modificações em linhas de código podem gerar comportamentos não intencionais, como o surgimento de novos erros. Isto por sua vez pode desencorajar o programador em fazer modificações, que em alguns casos optam por soluções minimalistas e que não são ideais para evitar riscos. O desenvolvedor pode ter mais segurança em codificar se existe a garantia que uma mudança mais significativa em código não cause efeitos colaterais nos sistemas, e os testes automáticos de regressão podem contribuir para esta garantia.
+
+É importante considerar também o efeito psicológico que a repetição de tarefas pode ocasionar no desempenho dos testes manuais \cite{desikan}. Os testadores podem ficar fatigados em realizar a mesma sequência de verificações continuamente, o que pode prejudicar o foco durante a comparação dos resultados obtidos com os esperados. Isso por fim propicia à ocorrência de falhas humanas e podem comprometer a qualidade do teste.
+
+Como consequência da prática de testes manuais, acumulado com a comum urgência de entrega rápida requisitadas pelas partes interessadas, \emph{stakeholders}, e os ciclos ágeis de curta duração, torna-se difícil na prática realizar todos os procedimentos de controle de qualidade necessários sem uma estratégia adequada. Softwares estão sendo constantemente aprimorados, entretanto se torna um desafio cada vez maior devidamente testá-los. Isso leva ao aumento no risco de anomalias que podem ser sentidas pelos usuários. Um possível erro adicionado de forma involuntária pelo usuário exige uma subsequente submissão de código para corrigi-lo, que por sua vez também traz riscos se não for devidamente testada.
+
+Tal comportamento cíclico vem trazendo problemas para os desenvolvedores, como os apontados por Mikkonen \emph{et al.} \cite{mikkonen}. Isso pode resultar em uma estratégia de intervenção minimalista em código, alterando o mínimo necessário para implementar a mudança ao invés de adotar uma solução mais correta. Essa estratégia por sua vez se mostra não escalável, podendo prejudicar a legibilidade do código.
+
+Portanto como forma de tentar solucionar tais problemas a comunidade vem tentando encontrar alternativas para garantir a qualidade do código. Estudos como o de Taipale \emph{et al.} \cite{taipale} apontam que existem situações, como testes de regressão, em que a automatização de testes traria benefícios na redução de custos através do alívio da carga de trabalho manual. Já outros casos, como testes exploratórios e de usabilidade do usuário, mostram que testes manuais ainda tem sua importância dada a complexidade de sua análise. Independente destes testes serem manuais ou automáticos, é fundamental ser definido o que irá ser testado em uma aplicação, e uma estratégia comum para este objetivo é o desenvolvimento de planos de testes.
+
+\hypertarget{conceito-de-testes}{%
+\subsubsection{Conceito de testes}\label{conceito-de-testes}}
+
+``Teste de Software é um processo ou uma série de processos feitos a fim de garantir que o programa está se comportando da forma esperada quando foi projetado, e nada além disso''. Esta é a definição utilizada por Myers \emph{et al.} \cite{myers}. De acordo com Myers, o software tem que ser previsível e consistente, não apresentando nenhuma surpresa aos usuários. O ato de testar consiste então em ``executar um programa com o propósito de encontrar erros''.
+
+Idealmente seria possível testar todas as possíveis permutações de um programa, porém isso é inviável na prática. Até mesmo um simples programa pode conter milhares de combinações de entradas e saídas, e testar cada caso exigiria um número excessivo de recursos. É necessário que o desenvolvedor de testes tenha uma visão crítica sobre o que é prioritário a ser testado em seu programa.
+
+Também mencionado por Myers e reforçado por Leventhal \emph{et al.} \cite{leventhal}, há o fator psicológico envolvido no processo de testes. O objetivo do teste é demonstrar que o programa não possua erros, logo pode ocorrer um viés durante a implementação dos testes a fim de alcançá-lo. Isso pode ocorrer por exemplo na escolha de dados que serão utilizados para o teste, de forma que tais dados possuam menor probabilidade de causar erros durante a execução do programa. Portanto um teste que encontra um erro deve ser considerado satisfatório.
+
+Outro aspecto também importante para o teste de software é o econômico. Desde décadas atrás, conforme pode ser visto em Tarek Abdel-Hamid \cite{abdel}, há a preocupação em encontrar o equilíbrio entre os custos de controle de qualidade e os benefícios econômicos trazidos por ela. Estratégias como testes de exaustão de entrada de dados ou de trajetórias em um software já se provaram pouco eficazes visto o gasto e tempo envolvidos em implementá-las. A ideia se torna, portanto, avaliar qual subconjunto de todos os casos de teste possíveis tem a maior probabilidade de detectar a maioria dos erros. Dessa forma, se torna mais viável economicamente a realização de testes de software.
+
+De forma resumida, Myers \emph{et al.} \cite{myers} sugerem os princípios a seguir para o desenvolvimento de testes:
+
+\begin{enumerate}
+    \item Uma parte fundamental para o caso de teste é a definição do resultado esperado.
+    \item Testes manuais devem ser realizados preferencialmente por uma outra pessoa que não seja o autor.
+    \item Da mesma forma que casos de testes devem conter condições de entradas válidas e esperadas, é importante também conter condições inválidas e inesperadas.
+    \item Não é suficiente apenas examinar se o programa está fazendo o que deveria ser feito. É fundamental também verificar o que está sendo feito a mais que não deveria ser feito.
+    \item Jamais planejar um teste sob a suposição de que nenhum erro será encontrado.
+    \item A probabilidade da existência de mais erros em uma seção de um programa é empiricamente proporcional ao número de erros já encontrados nessa seção.
+\end{enumerate}
+
+Um conceito adicional para a teoria de testes são as definições de validação e verificação. A validação se preocupa em certificar que o sistema atenderá às necessidades reais do cliente, enquanto a verificação se responsabiliza em garantir que o sistema esteja bem projetado e isento de erros \cite{pham2003software}. Tanto verificações como validações precisam ser apropriadamente documentadas, como por exemplo em um plano de testes.
+
+\hypertarget{teoria-do-plano-de-testes}{%
+\subsubsection{Plano de testes}\label{teoria-do-plano-de-testes}}
+
+O plano de testes é considerado um passo essencial no processo de teste de software \cite{nguyen}. Ele define a estratégia que será utilizada para o desenvolvimento de testes, sendo o responsável em documentar as validações que precisam estar de acordo com as especificações do usuário, e as verificações necessárias para isenção de erros.
+
+Sendo explicitado em um ou mais documentos, o plano de testes possui especificações sobre a natureza de cada teste, como o conteúdo a ser testado, o critério de aceitação e as suas condições de execução. Para todo teste desenvolvido, seja manual ou automático, é necessário o planejamento de seu funcionamento, e idealmente documenta-se este planejamento em um plano de testes.
+
+Planos de testes podem variar conforme a área de atuação do teste. Testes modulares de código podem conter planos de testes mais simples, enquanto testes de validação pelo usuário possuem especificações mais complexas e detalhadas. Em todos os casos, entretanto, é possível obter uma visão geral do que é necessário ser testado e ter um registro dos resultados de cada teste especificado.
+
+Um outro papel do plano de testes é quantificar os recursos necessários ao exercício do teste. É a partir dele que os administradores são capazes de obter uma visão geral da cobertura de testes sobre a aplicação e verificar que áreas estão com falta de testes e quais estão com redundância. Portanto, é possível observar por exemplo, que uma aplicação pode possuir um alto número de testes de usabilidade em uma parte do sistema, mas ao mesmo tempo apresentar carência em especificações de testes de aceitação em outra. Este levantamento permite um melhor controle da implantação de testes.
+
+O Padrão \emph{IEEE} 829 \cite{software2008ieee} para documentação de teste de software define em 8 passos principais o desenvolvimento de um plano de testes, como listado abaixo:
+\begin{enumerate}
+    \item Analisar o produto para obter informações, compreendendo seus requisitos.
+    \item Implantar a estratégia de teste, levando em consideração e escopo e o tipo de teste.
+    \item Definir o objetivo do teste, listando as funcionalidades e estabelecendo metas.
+    \item Estipular os critérios de teste, como a continuidade ou suspensão do ciclo de testes de acordo com os resultados de uma etapa.
+    \item Planejar os recursos necessários para os testes, sejam humanos ou computacionais.
+    \item Preparar o ambiente de testes, onde serão realizados os testes.
+    \item Estimar um cronograma de desenvolvimento e execução de testes.
+    \item Catalogar todos os componentes presentes antes, durante e depois do ciclo de testes, como documentos, \emph{scripts} e relatórios.
+\end{enumerate}
+
+Para introduzir um plano de testes é necessário organizá-lo conforme os tipos de teste desejados, levando em consideração as diferentes categorias de testes existentes para implementação.
+
+\hypertarget{categorias-de-teste}{%
+\subsubsection{Categorias de teste}\label{categorias-de-teste}}
+
+Diversos pontos de vista são encontrados na literatura em relação a classificação de testes. Por exemplo, na listagem feita por Rungta \cite{rungta}, mais de 100 categorizações existem para testes de software. Nesta fundamentação será discutida apenas as classificações de testes mais relevantes e que foram utilizadas neste trabalho.
+
+Os testes podem ser classificados em relação a sua capacidade de observação interna. Myers \cite{myers} usa a caracterização de um teste podendo ser caixa preta ou caixa branca. Um teste é considerado caixa preta quando não há preocupação com o comportamento interno e a estrutura do programa. A partir da observação de suas entradas e saídas, o objetivo do teste é encontrar as circunstâncias nas quais o programa não se comporta de acordo com suas especificações. Já o teste de caixa branca permite examinar a estrutura interna do programa de forma que o teste possa planejado de acordo com a lógica do código.
+
+Outra classificação importante encontra-se presente em Graham \emph{et al.} \cite{graham}, na qual se classifica os testes de acordo com os requisitos, podendo estes serem funcionais ou não funcionais. Testes funcionais verificam se o programa funciona de acordo com o comportamento esperado ao ser desenvolvido, levando-se em consideração os requisitos. Já os testes não funcionais avaliam critérios complementares e de caráter qualitativo como desempenho, segurança e usabilidade do software. Pode-se ter como exemplo um requisito funcional que especifica a realização de uma ação específica, enquanto um requisito não funcional especifica uma velocidade aceitável para a realização de tal ação.
+
+Mais uma classificação pertinente na literatura é em relação a mudanças no software. Segundo Graham, quando o software recebe uma atualização e ocorre um erro durante o teste deste novo módulo, a inconsistência é reportada. Assim que uma nova versão é lançada contendo o conserto do erro, o mesmo teste, nas mesmas condições anteriores, precisa ser refeito. Tal teste passa então a ser classificado como teste de confirmação. De forma semelhante, na verificação da mudança também ocorrem os testes de regressão. Entretanto os testes de regressão contêm todos os testes que anteriormente não haviam reportado erros, garantindo que uma nova mudança não afetará algo que funcionava corretamente previamente.
+
+Após essa série de classificações, tem-se por fim, mais uma categorização de acordo com a área de atuação do teste. Levando em consideração a análise feita por Bourque \emph{et al.} \cite{bourque}, os testes podem ser enquadrados em 4 níveis principais. Estes são os testes de unidade, testes de integração, testes de sistema e testes de aceitação. Nas próximas duas seções esses tipos de testes serão divididos entre manuais e automáticos. Esta divisão é feita de acordo com a aplicabilidade habitual feita pela indústria.
+
+\hypertarget{testes-manuais}{%
+\subsubsection{Testes manuais}\label{testes-manuais}}
+
+Apesar da grande vantagem apresentada pela realização de testes automáticos, em certos casos eles não podem substituir os testes manuais. Como sugerido por Myers \emph{et al.} \cite{myers}, é importante a realização de validações humanas em certas situações, tais como revisão de código, testes exploratórios, testes de usabilidade, e por fim, testes de aceitação de usuário. Tais testes são em geral testes de confirmação, e possuem características que os tornam difíceis de serem automatizados.
+
+A revisão de código fornece uma avaliação a qualidade geral do código apresentado, focando nos níveis de unidade e integração. Por ser uma verificação de caixa branca, ao ler o código um outro desenvolvedor pode classificar quesitos como facilidade de manutenção, extensibilidade, usabilidade e clareza. O revisor pode também sugerir soluções preexistentes que o autor do código desconhece, assim como também aprender novas técnicas de programação ao avaliar um código de terceiro. A revisão de código permite um aprendizado colaborativo entre autor e revisor, e sua aplicação já se mostrou benéfica em diversos estudos \cite{bacchelli}.
+
+Os testes exploratórios e de usabilidade são considerados testes de sistema. Testes de sistemas são os responsáveis em verificar se o produto está consistente com os objetivos originais. Testes categorizados nesta área de atuação são realizados após testes de integração e antes dos testes de aceitação, analisando a coordenação dos diversos componentes em código que resultam na funcionalidade a ser utilizada pelo usuário final. São testes de caixa preta e que dependendo do tipo de teste podem ser tanto manuais como automáticos, avaliando tanto critérios funcionais como não funcionais.
+
+Testes exploratórios, termo inventado por Cem Kaner \cite{kaner} em 1984, avaliam o produto desenvolvido sem possuir instruções e entendimento de como o próprio funciona. Sendo um teste de caixa preta, o testador explora o teste de forma livre em busca de comportamentos inesperados. O teste exploratório também contribui com o desenvolvimento do plano de testes, fomentando a descoberta de mais casos de teste. Possuindo uma característica de depuração, testes exploratórios também podem ser acrescentados durante a execução de um teste convencional, a fim de tentar reproduzir um defeito aleatório ou investigar a causa raiz de um problema.
+
+Os testes de usabilidade por sua vez avaliam como o produto é utilizado, relacionado principalmente com a sua intuitividade, clareza e qualidade. Podem ser usados como critérios por exemplo a navegação feita pelo usuário, sua facilidade em encontrar o que procura e se existem elementos que são ignorados por ele. Como forma de melhor qualificar os testes de usabilidade, em Nielsen \emph{et al.} \cite{nielsen} uma fórmula empírica foi proposta a fim de estimar uma relação entre testadores e o número de problemas de usabilidade encontrados. Tal fórmula pode ser descrita a seguir:
+
+\[ E = 100 * (1 - (1 - L)^n)\]
+
+Onde $E$ é o número de erros encontrados na interface, $n$ é o número de testadores e $L$ é a porcentagem de problemas de usabilidade encontrados por um testador. Usando $L = 31$ na equação, que é um valor plausível segundo a pesquisa de Nielsen, é possível ver por exemplo que havendo 5 testadores, aproximadamente 83\% dos erros de usabilidade podem ser encontrados.
+
+Definido em Hambling \emph{et al.} \cite{hambling}, testes de aceitação de usuário são realizados com o objetivo de determinar se um sistema atende aos requisitos originais do usuário. Em outras palavras, estes testes utilizam os próprios usuários como testadores, verificando se o desenvolvedor compreendeu corretamente as especificações ao desenvolver o software e validando se está de acordo com as expectativas. Apesar de se assemelhar ao teste de usabilidade, os testes de aceitação focam nos requisitos funcionais, enquanto os testes de usabilidade possuem uma visão geral considerando os requisitos não funcionais.
+
+\hypertarget{testes-automaticos}{%
+\subsubsection{Testes automáticos}\label{testes-automaticos}}
+
+Testes automáticos são em geral regressivos e focam nos requisitos funcionais. Myers \emph{et al.} \cite{myers} destaca que para ciclos curtos e rápidos de desenvolvimento, como presente em ambiente ágeis, o tempo é um recurso valioso, e por isso a adoção de testes automatizados é incentivada. Os principais níveis de testes em que podem haver automatizações são os de unidade, de integração e de sistema.
+
+Testes de unidade são os primeiros dos testes a serem executados e onde se detectam a maior parte dos erros de programação. Sendo testes de caixa branca, eles validam a nível modular de código, seja ele uma função, método ou classe.
+
+Já os testes de integração avaliam a interface entre dois ou mais módulos a fim de encontrar inconsistências na associação dos componentes. Eles podem ser tanto caixa preta como caixa branca, de acordo com a motivação do teste.
+
+Finalmente, há os testes ponta a ponta, que fazem parte dos testes de sistema. Estes são testes de caixa preta e focam na funcionalidade desenvolvida na perspectiva do usuário final. São testes que simulam diferentes ambientes em que a aplicação será utilizada e checam se os resultados estão conforme os requisitos definidos.
+
+O conteúdo deste trabalho foi realizado principalmente com o desenvolvimento de \emph{frameworks} voltados para testes de unidade e testes ponta a ponta. Portanto, estes assuntos serão discutidos com mais profundidade nas próximas seções.
