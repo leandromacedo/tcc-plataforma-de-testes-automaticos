@@ -26,7 +26,7 @@ Inicialmente para o desenvolvimento de um protótipo, foram experimentadas duas 
     \label{fig:e2e-ferramenta}
 \end{figure}
 
-Apesar de ambas funcionarem corretamente, nenhuma delas atendia todas as necessidades dos sistemas. O \emph{Sikuli} realiza as asserções de teste por meio de regressão visual com comparação direta de imagens, o que é algo volátil a acusação falsa de erros. Juntando-se isso ao fato de a ferramenta ter perdido grande parte de seus mantenedores, foi desistido o uso da ferramenta. Já o \emph{Selenium IDE}, apesar de sua praticidade e da sua geração automática de código, não permite lógicas mais complexas, como iterações e condicionais. Concluiu-se que seria preferível escrever os testes diretamente em código, sem captura direta de imagens ou gravação de movimentos, e dessa maneira foi decidido experimentar a ferramenta \emph{Selenium Webdriver}.
+Apesar de ambas funcionarem corretamente, nenhuma delas atendia todas as necessidades dos sistemas. O \emph{Sikuli} realiza as asserções de teste por meio de regressão visual com comparação direta de imagens, o que é algo volátil a acusação falsa de erros. Juntando-se isso ao fato de a ferramenta ter perdido grande parte de seus mantenedores, foi desistido do uso da ferramenta. Já o \emph{Selenium IDE}, apesar de sua praticidade e da sua geração automática de código, não permite lógicas mais complexas, como iterações e condicionais. Concluiu-se que seria preferível escrever os testes diretamente em código, sem captura direta de imagens ou gravação de movimentos, e dessa maneira foi decidido experimentar a ferramenta \emph{Selenium Webdriver}.
 
 O \emph{Selenium Webdriver} é considerado um dos mais famosos \emph{frameworks} de \emph{end-to-end testing} para navegadores. Com ele se torna possível desenvolver testes sofisticados, com lógica de linguagens imperativas, capazes de realizar testes em diferentes sistemas operacionais com navegadores distintos. Disponível em diferentes linguagens, os primeiros protótipos foram feitos na linguagem \emph{Python}. Um exemplo de código de teste realizado se encontra na figura \ref{fig:e2e-ferramenta-2}, em que é verificado se existe um contrato na interface com um nome específico.
 
@@ -37,12 +37,12 @@ O \emph{Selenium Webdriver} é considerado um dos mais famosos \emph{frameworks}
     \label{fig:e2e-ferramenta-2}
 \end{figure}
 
-\emph{Selenium Webdriver} foi a ferramenta utilizada durante a parte inicial deste trabalho, entretanto não oferece uma solução completa para utilização em ecossistemas mais complexos. Diversos utilitários adicionais não estão presentes no \emph{framework}, como registro de eventos \emph{log}, biblioteca de validações, gerador de relatório, depuração e facilidades a integração contínua. Havia a possibilidade de desenvolver esses complementos, entretanto seria algo que consumiria tempo. Foi então realizada uma nova pesquisa e um novo \emph{framework} foi encontrado, desenvolvido a partir do \emph{Selenium Webdriver}. Chamado de \emph{WebdriverIO}, este é o principal recurso utilizado, até o momento presente do trabalho, para testes E2E.
+\emph{Selenium Webdriver} foi a ferramenta utilizada durante a parte inicial deste trabalho, entretanto não oferece uma solução completa para utilização em ecossistemas mais complexos. Diversos utilitários adicionais não estão presentes no \emph{framework}, como registro de eventos \emph{log}, biblioteca de validações, gerador de relatório, depuração e facilidades a integração contínua. Havia a possibilidade de desenvolver esses complementos, entretanto seria algo que consumiria tempo. Foi então realizada uma nova pesquisa e um novo \emph{framework} foi encontrado, desenvolvido a partir do \emph{Selenium Webdriver}. Chamado de \emph{WebdriverIO}, este é o principal recurso utilizado até o momento presente do trabalho para testes \emph{e2e}.
 
 \hypertarget{implementacao-do-framework-webdriverio}{%
-\subsubsection{\texorpdfstring{Implantação do \emph{framework} \emph{WebdriverIO}}{Implantação do framework WebdriverIO}}\label{implementacao-do-framework-webdriverio}}
+\subsubsection{\texorpdfstring{Implantação do \emph{framework} \emph{WebdriverIO}}{Implementação do framework WebdriverIO}}\label{implementacao-do-framework-webdriverio}}
 
-Este \emph{framework} é uma implementação feita a partir da \emph{API} do \emph{Selenium Webdriver}, escrito na linguagem \emph{Javascript} e interpretado pelo mecanismo \emph{Nodejs}. Como esta é uma das principais linguagens utilizada pelo grupo de desenvolvedores, a facilidade em escrever código se torna maior do que era com o \emph{Selenium Webdriver} em \emph{Python}. A abstração existente no \emph{WebdriverIO} permite que comandos mais complexos, que implementados em \emph{Selenium} precisaria de múltiplas linhas e diversas condicionais para diferentes ambientes, sejam realizados em apenas uma linha. Isso é perceptível principalmente em \emph{watchers}, que são implementações de observadores que aguardam um evento ser realizado antes de dar continuidade com o \emph{script}. \emph{Watchers} são fundamentais para trazer estabilidade aos testes, uma vez que eventos podem ser mais lentos do que esperado, quando por exemplo ocorrem problemas em rede ou no servidor que hospeda a aplicação a ser testada.
+Este \emph{framework} é uma implementação feita a partir da \emph{API} do \emph{Selenium Webdriver}, escrito na linguagem \emph{Javascript} e interpretado pelo mecanismo \emph{Nodejs}. Como esta é uma das principais linguagens utilizada pelo grupo de desenvolvedores, a facilidade em escrever código se torna maior do que era com o \emph{Selenium Webdriver} em \emph{Python}. A abstração existente no \emph{WebdriverIO} permite que comandos mais complexos, que implementados em \emph{Selenium} precisariam de múltiplas linhas e diversas condicionais para considerar diferentes ambientes, sejam realizados em apenas uma linha. Isso é perceptível principalmente em \emph{watchers}, que são implementações de observadores que aguardam um evento ser realizado antes de dar continuidade com o \emph{script}. \emph{Watchers} são fundamentais para trazer estabilidade aos testes, uma vez que eventos podem ser mais lentos do que esperado, quando por exemplo ocorrem problemas em rede ou no servidor que hospeda a aplicação a ser testada.
 
 Logo no início da configuração do \emph{WebdriverIO}, uma série de ferramentas são oferecidas de acordo com a necessidade. Por meio de um arquivo de configuração, chamado \emph{wdio.conf.js}, é possível definir os parâmetros de execução no teste, como por exemplo na figura \ref{fig:webdriverio}.
 
@@ -53,7 +53,7 @@ Logo no início da configuração do \emph{WebdriverIO}, uma série de ferrament
     \label{fig:webdriverio}
 \end{figure}
 
-Analisando o arquivo em \emph{Runner Configuration} é possível explicitar em que máquina os testes serão rodados, podendo ser local ou remotamente. \emph{Specify Test Files} permite especificar quais testes executar e quais ignorar. Por \emph{~Capabilities} é viabilizado balancear em quantas instancias de quais navegadores os testes rodarão em paralelo. \emph{Test Configurations} define configurações gerais, como verbosidade de \emph{log}, tempo máximo de duração do teste com os \emph{timeouts}, tolerância com testes falhos em \emph{bail}, e escolha de ferramentas adicionais, como \emph{framework} auxiliares de testes e \emph{reporters} que geram os relatórios finais. Por fim, há os \emph{Hooks}, que permitem realizar tarefas adicionais durante o ciclo de execução, como por exemplo tirar uma \emph{screenshot} da página ao fim de um teste quando ocorre um erro.
+Analisando o arquivo em \emph{Runner Configuration} é possível explicitar em que máquina os testes serão rodados, podendo ser local ou remotamente. \emph{Specify Test Files} permite especificar quais testes executar e quais ignorar. Por \emph{~Capabilities} é viabilizado balancear em quantas instancias de quais navegadores os testes executarão em paralelo. \emph{Test Configurations} define configurações gerais, como verbosidade de \emph{log}, tempo máximo de duração do teste com os \emph{timeouts}, tolerância com testes falhos em \emph{bail}, e escolha de ferramentas adicionais, como \emph{framework} auxiliares de testes e \emph{reporters} que geram os relatórios finais. Por fim, há os \emph{hooks}, que permitem realizar tarefas adicionais durante o ciclo de execução, como por exemplo tirar uma \emph{screenshot} da página ao fim de um teste quando ocorre um erro.
 
 \emph{WebdriverIO} possui embutido recursos avançados de escrita de código. Por exemplo o \emph{transpilador Babel} para conversão de código, permitindo o uso das funcionalidades mais recentes do \emph{Javascript}, e o validador \emph{typescript}, que permite tipificar a linguagem. O \emph{framework} também é compatível com serviços de execução de testes em nuvem, como o \emph{Sauce Labs}, e depuração avançada, com a interface \emph{REPL} que permite inspecionar o teste no momento de execução.
 
@@ -62,7 +62,7 @@ Com essa alta capacidade de customização e integrações disponíveis, foi pre
 \hypertarget{implementacao-e-design-do-fate}{%
 \subsubsection{\texorpdfstring{Implementação e \emph{design} do \emph{Fate}}{Implementação e design do Fate}}\label{implementacao-e-design-do-fate}}
 
-O \emph{framework} \emph{Fate}, segue princípios próximos dos utilizados no \emph{FUnit}. Um híbrido de paradigmas funcional e orientado a objetos é utilizado, com também aplicação da filosofia \emph{SOLID} e abstração em arquivos de configuração.
+O \emph{framework} \emph{Fate}, segue princípios próximos dos utilizados no \emph{FUnit}. Um híbrido de paradigmas funcional e orientado a objetos é utilizado, com também aplicação dos princípios \emph{SOLID} e abstração em arquivos de configuração.
 
 \begin{figure}[H]
     \centering
@@ -75,18 +75,18 @@ Como ilustrado na figura \ref{fig:fate-esq-2}, a estrutura que o \emph{Fate} pos
 
 Dentro do diretório \emph{Atlas}, é possível ver uma segunda divisão baseada em sistemas, como o \emph{Aces}. No interior do diretório do sistema, é possível ver os diretórios \emph{Maps}, \emph{Page Objects} e \emph{Specs}. Em \emph{Specs}, se encontram os testes que serão executados, e assim como o \emph{FUnit} faz uso de arquivos de configuração, o \emph{Fate} utiliza conteúdo de \emph{Maps} e \emph{Page Objects} para executar os testes em \emph{Specs}.
 
-Essa organização se baseia em um padrão de \emph{design} chamado de \emph{page object pattern}. Esse \emph{design} defende a ideia de cadeia de responsabilidades, na qual se separa o que precisa ser testado de como precisa ser testado. Isso torna mais simples o reaproveitamento de código entre testes, principalmente quando possuem páginas web em comum. Portanto o \emph{~page object pattern} recomenda a implementação de um objeto que represente a sua página, possuindo propriedades e métodos próprios que definem as possibilidades de interação pelos testes. Dessa forma, não é de responsabilidade do teste em implementar a lógica de interação, cabendo apenas importar o objeto \emph{page} o qual deseja testar e utilizar as interações disponíveis. Tem-se então os \emph{Specs}, que definem o que é desejado testar, e os \emph{Page Objects} possuem a lógica e as interações disponíveis para serem testadas, usando os \emph{Maps} com informações adicionais de configuração do objeto. Na próxima seção será ilustrado um caso de uso desta estratégia.
+Essa organização se baseia em um padrão de \emph{design} chamado de \emph{page object pattern}. Esse \emph{design} defende a ideia de cadeia de responsabilidades, na qual se separa o que precisa ser testado de como precisa ser testado. Isso torna mais simples o reaproveitamento de código entre testes, principalmente quando possuem páginas web em comum. Portanto o \emph{~page object pattern} recomenda a implementação de um objeto que represente a sua página, possuindo propriedades e métodos próprios que definem as possibilidades de interação pelos testes. Dessa forma, não é de responsabilidade do teste em implementar a lógica de interação, cabendo apenas importar o objeto \emph{page} o qual deseja testar e utilizar as interações disponíveis. Tem-se então os \emph{Specs}, que definem o que é desejado testar, e os \emph{Page Objects}, que possuem a lógica e as interações disponíveis para serem testadas. Os arquivos \emph{Maps} armazenam informações adicionais de configuração do objeto, como localizadores, que serão utilizados pelos \emph{Page Objects}. Na próxima seção será ilustrado um caso de uso desta estratégia.
 
 É extremamente presente no \emph{Fate} o princípio da herança. \emph{Page Objects} e \emph{Maps} são definidos ao longo de toda a hierarquia do \emph{framework}, de forma que à medida que se desce um nível de diretório, \emph{Page Objects} e \emph{Maps} deste nível herdam as funcionalidades dos respectivos diretórios pais. Este é um princípio inspirado no \emph{framework Fence}, que também realiza a mesma prática. Portanto, como visto no exemplo da figura \ref{fig:fate-esq-2}, \emph{Page Objects} e \emph{Maps} possuem acesso as funcionalidades adicionais dos diretórios de mesmo nome presentes em \emph{Atlas} e na raiz do \emph{Fate}.
 
 \hypertarget{tecnologias-e-caso-de-uso}{%
 \subsubsection{Tecnologias e caso de uso}\label{tecnologias-e-caso-de-uso}}
 
-Em relação as tecnologias utilizadas, o \emph{Fate} possui um conjunto abrangente. Além do \emph{WebdiverIO}, sua arquitetura faz uso também de \emph{frameworks} e bibliotecas adicionais, como presente no fluxograma da figura \ref{fig:fate-framework}. Diferentemente do \emph{FUnit} que depende unicamente do \emph{phpunit}, na linguagem \emph{Javascript} há um número maior de opções que permitem uma maior customização da sua aplicação.
+Em relação às tecnologias utilizadas, o \emph{Fate} possui um conjunto abrangente. Além do \emph{WebdiverIO}, sua arquitetura faz uso também de \emph{frameworks} e bibliotecas adicionais, como presente no fluxograma da figura \ref{fig:fate-framework}. Diferentemente do \emph{FUnit} que depende unicamente do \emph{phpunit}, na linguagem \emph{Javascript} há um número maior de opções que permitem uma maior customização da aplicação.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{source/4-solucao/images/fate-framework.png}
+    \includegraphics[width=14.5cm]{source/4-solucao/images/fate-framework.png}
     \caption{Funcionamento detalhado do \emph{Fate}. Os testes são escritos, executados e validados após a estruturação dos requisitos.}
     \label{fig:fate-framework}
 \end{figure}
@@ -95,8 +95,8 @@ Inicialmente os requisitos são expressados no formato exigido pelo \emph{framew
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=13cm]{source/4-solucao/images/aces-example.png}
-    \caption{Captura de tela do sistema \emph{Aces}, com a lista de itens à esquerda, que são o objeto de exemplo de teste.}
+    \includegraphics[width=11.75cm]{source/4-solucao/images/aces-example.png}
+    \caption{Captura de tela do sistema \emph{Aces}, com a lista de itens à esquerda, que são o objeto de exemplo do teste.}
     \label{fig:aces-example}
 \end{figure}
 
@@ -109,16 +109,16 @@ O requisito extraído do plano de testes é descrito no \emph{test case} da \emp
     \label{fig:fate-spec}
 \end{figure}
 
-No conteúdo de \emph{Navigation}, na figura \ref{fig:fate-page-object}, é possível ver a definição da série de passos necessários para atender o pedido do \emph{Spec}. No método \emph{collapsedDefaultTree} é pedido ao \emph{WebdriverIO} que aguarde a existência do elemento \emph{htCollapsedNode}, que contém a lista de itens, até o limite de tempo \emph{timeout}, acusando erro se ultrapassado. Após isso, é enviado o comando \emph{click}, que representa o clique de um \emph{mouse}, para colapsar a lista. O \emph{WebdriverIO} recebe estes comandos, traduz e envia para o \emph{Selenium} por meio da \emph{API}, que realiza as respectivas ações no navegador, como por exemplo \emph{Chrome}, \emph{Firefox} ou \emph{Safari}.
+No conteúdo do \emph{Page Object}, na figura \ref{fig:fate-page-object}, é possível ver a definição da série de passos necessários para atender o pedido do \emph{Spec}. No método \emph{collapsedDefaultTree} é pedido ao \emph{WebdriverIO} que aguarde a existência do elemento \emph{htCollapsedNode}, que contém a lista de itens, até o limite de tempo \emph{timeout}, acusando erro se ultrapassado. Após isso, é enviado o comando \emph{click}, que representa o clique de um \emph{mouse}, para colapsar a lista. O \emph{WebdriverIO} recebe estes comandos, traduz e envia para o \emph{Selenium} por meio da \emph{API}, que realiza as respectivas ações no navegador, como por exemplo \emph{Chrome}, \emph{Firefox} ou \emph{Safari}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{source/4-solucao/images/fate-page-object.png}
+    \includegraphics[width=14.5cm]{source/4-solucao/images/fate-page-object.png}
     \caption{\emph{Page Object} contendo a lógica de ações disponíveis na interface.}
     \label{fig:fate-page-object}
 \end{figure}
 
-Realizadas as ações, a execução é retomada em \emph{Navigation} que por fim retorna o fim da interação para o \emph{Spec} original. É válido notar também que ao longo do código \emph{Navigation}, diversas propriedades do objeto \emph{navigation.ui} são utilizadas, que pertence ao \emph{Maps}. Este objeto, ilustrado na figura \ref{fig:fate-maps}, funciona como um dicionário, fornecendo informações de localização de elementos na página e seus atributos.
+Realizadas as ações, a execução é retomada no \emph{Page Object}, que retorna o fim da interação para o \emph{Spec} original. É válido notar também que ao longo do código do \emph{Page Object} \emph{Navigation}, diversas propriedades do objeto \emph{navigation.ui} são utilizadas, as quais pertencem ao arquivo \emph{Maps}. Este arquivo, ilustrado na figura \ref{fig:fate-maps}, funciona como um dicionário, fornecendo informações de localização de elementos na página e seus atributos.
 
 \begin{figure}[H]
     \centering
@@ -129,7 +129,7 @@ Realizadas as ações, a execução é retomada em \emph{Navigation} que por fim
 
 Finalizadas as interações desejadas com a página, tem-se a validação na última linha da \emph{Spec}. No exemplo mostrado, é utilizado o método \emph{assert.equal}, disponibilizado pela biblioteca \emph{chaijs}. Esta biblioteca permite diversos tipos de validações para diferentes estruturas de dados, facilitando as verificações do teste. No caso da \emph{FUnit}, as validações disponíveis no \emph{phpunit} são mais limitadas, tendo sido necessária a implementação de mais opções de validação.
 
-Este processo descrito acima é repetido para cada \emph{test case} do arquivo \emph{Spec}, e a partir do momento em que todos os \emph{Specs} são executados ou interrompidos no caso de erro, um relatório é então gerado. Atualmente se usam três tipos diferentes de relatórios, um para cada situação, exemplificadas na figura \ref{fig:allure-report}. O relatório \emph{dot} é compacto e usado principalmente para verificações rápidas de regressão enquanto se desenvolvem novos testes. No caso do relatório \emph{spec}, ele é utilizado principalmente durante as \emph{pipelines} da integração contínua, e fornece informações mais detalhadas sobre a execução dos testes também em linha de comando. E finalmente há o relatório \emph{Allure}, que se trata de uma página web e possui uma análise gráfica criteriosa dos testes, sendo utilizado principalmente para situações mais formais, como apresentações e auditorias.
+Este processo descrito é repetido para cada \emph{test case} do arquivo \emph{Spec}, e a partir do momento em que todos os \emph{Specs} são executados ou interrompidos em caso de erro, um relatório é então gerado. Atualmente são utilizados três tipos diferentes de relatórios, um para cada situação, exemplificadas na figura \ref{fig:allure-report}. O relatório \emph{dot} é compacto e usado principalmente para verificações rápidas de regressão enquanto se desenvolvem novos testes. No caso do relatório \emph{spec}, ele é utilizado principalmente durante as \emph{pipelines} da integração contínua, e fornece informações mais detalhadas sobre a execução dos testes também em linha de comando. E finalmente há o relatório \emph{Allure}, que se trata de uma página web e possui uma análise gráfica criteriosa dos testes, sendo utilizado principalmente para situações mais formais, como apresentações e auditorias.
 
 \begin{figure}[H]
     \centering
@@ -143,7 +143,7 @@ Este processo descrito acima é repetido para cada \emph{test case} do arquivo \
 
 Com a disponibilização recente da nova ferramenta \emph{ResembleJS} pelo \emph{WebdriverIO}, se tornou possível também a realização de testes de regressão visual. Estes testes realizam comparação direta de imagens, o que é útil em certos casos, apesar de serem testes que exigem mais processamento. O comportamento é semelhante ao da ferramenta \emph{Sikuli} mencionada anteriormente. Entretanto, diferentemente do \emph{Sikuli}, a integração com o \emph{ResembleJS} já é nativa e compatível com o ambiente de desenvolvimento do \emph{Fate}, exigindo menos esforço para ser utilizada.
 
-A figura \ref{fig:aces-example-2} disponibiliza um exemplo de seu funcionamento. Na imagem extraída da página de \emph{navigation} do \emph{Aces}, é possível observar um desenho com pequenos retângulos posicionados ao seu redor. Estes retângulos são chamados de \emph{racks} e representam painéis de eletrônicos posicionados fisicamente em uma seção transversal do detector \emph{Atlas}, no subsolo do \emph{CERN}. Estes \emph{racks} não podem ser movimentados ou removidos, portanto, um teste de regressão visual foi desenvolvido para ele. Ao remover o \emph{rack} \emph{Y.M1-05.XA} e executar o teste, é possível ver que p teste destaca a diferença entre a imagem de referência e a obtida, acusando o erro. Assim é possível garantir a confiabilidade do mapa em questão.
+A figura \ref{fig:aces-example-2} disponibiliza um exemplo de seu funcionamento. Na imagem extraída da página de \emph{navigation} do \emph{Aces}, é possível observar um desenho com pequenos retângulos posicionados ao seu redor. Estes retângulos são chamados de \emph{racks} e representam painéis de eletrônicos posicionados fisicamente em uma seção transversal do detector \emph{Atlas}, no subsolo do \emph{CERN}. Estes \emph{racks} não podem ser movimentados ou removidos, portanto, um teste de regressão visual foi desenvolvido para eles. Ao remover o \emph{rack} \emph{Y.M1-05.XA} e executar o teste, é possível ver que o teste destaca a diferença entre a imagem de referência e a obtida, acusando o erro. Assim é possível garantir a confiabilidade do mapa em questão.
 
 \begin{figure}[H]
     \centering
@@ -152,4 +152,4 @@ A figura \ref{fig:aces-example-2} disponibiliza um exemplo de seu funcionamento.
     \label{fig:aces-example-2}
 \end{figure}
 
-O desenvolvimento dos testes unitários utilizando \emph{FUnit} e os testes \emph{E2E} com o \emph{Fate}, se mostrou essencial a elaboração de um ambiente de execução automática conforme a demanda. Isso motivou o desenvolvimento da integração contínua para os \emph{frameworks}, que será discutida na próxima seção.
+O desenvolvimento dos testes unitários utilizando \emph{FUnit} e dos testes \emph{e2e} com o \emph{Fate} mostrou a importância da elaboração de um ambiente de execução automática conforme a demanda. Isso motivou o desenvolvimento da integração contínua para os \emph{frameworks}, que será discutida na próxima seção.
