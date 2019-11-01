@@ -1,15 +1,15 @@
 \section{Centro de pesquisa CERN}
 Levando-se em consideração a análise retrospectiva feita por James Gillies \cite{gillies}, no fim da década de 40 a Europa passava por um período de reestruturação. A necessidade de se recuperar em um cenário pós segunda guerra mundial fez com que crescesse o interesse colaborativo entre as nações europeias em diversas áreas, como a ciência. A retomada da pesquisa fundamental era de enorme importância para a comunidade científica, e com isso, em 1949 foi feita a primeira proposta oficial da formação de uma organização científica europeia. Discussões subsequentes se deram nos anos seguintes, até que em 1951 ocorre a primeira resolução sobre o estabelecimento de um conselho europeu voltado a pesquisa nuclear, ou abreviando-se, \emph{CERN} (\emph{Conseil Européen pour la Recherche Nucléaire}). Em 1954 o laboratório é oficialmente fundado próximo de Genebra, na Suíça.
 
-De acordo com o relatório anual do \emph{CERN} \cite{cernrelat}, o centro de pesquisa conta com a participação de mais de 17900 pessoas ao redor do mundo. Mais de 12500 cientistas contribuem dando assistência aos experimentos e na análise de dados, representando 110 nacionalidades presentes em institutos de mais de 70 países.
+De acordo com o relatório anual do \emph{CERN} \cite{cernrelat}, o centro de pesquisa conta com a participação de mais de 17.900 pessoas ao redor do mundo. Mais de 12.500 cientistas contribuem dando assistência aos experimentos e na análise de dados, representando 110 nacionalidades presentes em institutos de mais de 70 países.
 
 O objetivo principal do centro de pesquisa é compreender melhor o universo a partir do estudo da estrutura fundamental das partículas \cite{cernsiteabout}. Partículas subatômicas colidem entre si próximas a velocidade da luz, gerando informações sobre como as partículas interagem e ajudando a melhor compreender as leis fundamentais da natureza. Estes experimentos se tornam possíveis graças à presença de aceleradores de partículas e detectores, responsáveis respectivamente por impulsionar feixes de partículas a altas energias e por observar e coletar o resultado das colisões.
 
-O Grande Colisor de Hádrons (\emph{Large Hadron Collider}) é definido como o principal acelerador do \emph{CERN} e o mais poderoso acelerador do mundo \cite{evans} \cite{cernsiteabout}. O \emph{LHC} possui dois tubos mantidos a vácuo em uma circunferência de 27 km nos quais os feixes de partículas viajam em direções opostas momentos antes da colisão. Tais feixes são então conduzidos a colidir em 4 pontos, onde ficam localizados os 4 detectores principais do \emph{LHC}: \emph{ATLAS}, \emph{CMS}, \emph{ALICE} e \emph{LHCb}.
+O Grande Colisor de Hádrons (\emph{Large Hadron Collider}) é definido como o principal acelerador do \emph{CERN} e o mais poderoso acelerador do mundo \cite{cernsiteabout} \cite{evans}. O \emph{LHC} possui dois tubos mantidos a vácuo em uma circunferência de 27 km nos quais os feixes de partículas viajam em direções opostas momentos antes da colisão. Tais feixes são então conduzidos a colidir em 4 pontos, onde ficam localizados os 4 detectores principais do \emph{LHC}: \emph{ATLAS}, \emph{CMS}, \emph{ALICE} e \emph{LHCb}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{source/2-contextualizacao/images/cern-overview-simples.png}
+    \includegraphics[width=15cm]{source/2-contextualizacao/images/LHC-now.png}
     \caption{Visão topográfica do \emph{CERN}.}
     \label{fig:cern-overview}
 \end{figure}
@@ -33,3 +33,6 @@ O foco do detector ATLAS (\emph{A Toroidal LHC ApparatuS}) se concentra na tenta
 \end{figure}
 
 Com a longevidade dos experimentos, as numerosas pesquisas realizadas pelo laboratório e a grande quantidade de pessoas envolvidas, um grande volume de dados vem sendo produzido desde as últimas décadas, e a complexidade exigida para o controle destes dados requer a assistência de softwares. É essencial para estes softwares possuírem fácil adaptação a mudanças, pois com os constantes aprimoramentos realizados nos experimentos, a grande rotatividade de contribuidores e a própria evolução do software, as necessidades de funcionalidades mudam com frequência. Isso se torna um forte motivacional para o investimento em testes de software, já que o dinamismo destes softwares exige verificações constantes quanto à confiabilidade oferecida.
+
+Dentro do \emph{CERN}, diversos grupos atualmente desenvolvem soluções automatizadas para testes. Um exemplo é o grupo \emph{Joint Controls Project} que desenvolve softwares de sistemas de controle comuns aos 4 principais detectores. 
+Juntamente com estes softwares, o grupo implementou um \emph{framework} próprio de escrita de testes unitários para verificá-los. Outro exemplo é o desenvolvimento de testes ponta a ponta para a plataforma \emph{EDH} que gerencia documentos eletrônicos do \emph{CERN}, feito pelo grupo \emph{Advanced Information Systems}. Em ambos casos as soluções apresentadas atingem propósitos específicos e em linguagens de programação distintas, não sendo soluções genéricas que atendam as necessidades de todos os grupos presentes no centro de pesquisa.

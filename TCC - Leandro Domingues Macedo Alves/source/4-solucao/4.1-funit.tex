@@ -1,12 +1,12 @@
 \hypertarget{fence-unit-test}{%
 \section{Testes unitários com FUnit}\label{fence-unit-test}}
 
-O \emph{framework} \emph{Fence Unit Test}, ou \emph{FUnit}, foi implementado para auxiliar os desenvolvedores de sistemas \emph{Fence} na escrita de testes unitários. Conforme mostrado de forma simplificada pela figura \ref{fig:funit-esq}, definido o método que deseja ser testado como entrada, o desenvolvedor escreve o teste utilizando as ferramentas disponibilizadas pelo \emph{FUnit}, para no final ser fornecido um relatório com o resultado.
+O \emph{framework} \emph{Fence Unit Test}, ou \emph{FUnit}, foi implementado para auxiliar os desenvolvedores de sistemas \emph{Fence} na escrita de testes unitários. Conforme mostrado de forma simplificada pela figura \ref{fig:funit-esq}, após definir o método que deseja ser testado como entrada, o desenvolvedor escreve o teste utilizando as ferramentas disponibilizadas pelo \emph{FUnit}, para no final ser fornecido um relatório com o resultado.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{source/4-solucao/images/funit-esq.png}
-    \caption{Simplificação do \emph{FUnit}. Métodos são usados como entrada e um relatório é gerado no final.}
+    \caption{Simplificação do \emph{FUnit}. Métodos que desejam ser testados são usados como entrada e um relatório é gerado no final.}
     \label{fig:funit-esq}
 \end{figure}
 
@@ -15,9 +15,11 @@ Esta seção discute o \emph{framework} desenvolvido, explicando primeiramente o
 \hypertarget{framework-phpunit}{%
 \subsubsection{\texorpdfstring{\emph{Framework phpunit}}{Framework phpunit}}\label{framework-phpunit}}
 
-Para atender o objetivo de pequenas entregas, proposto pela metodologia ágil, é fundamental garantir a qualidade do código. Os testes unitários são essenciais para contribuir para esta garantia, dando início a uma pesquisa por soluções disponíveis para \emph{php}, a linguagem principal do \emph{Fence}. Entre as opções, o \emph{phpunit} é o \emph{framework} dominante na comunidade, sendo a opção escolhida para este projeto.
+Para atender o objetivo de pequenas entregas, proposto pela metodologia ágil, é fundamental garantir a qualidade do código. Os testes unitários são essenciais para contribuir para esta garantia. Com isso, deu-se início a uma pesquisa por soluções disponíveis para escrita de testes unitários em \emph{php}, a linguagem principal do \emph{Fence}. Entre as opções encontradas, o \emph{framework} \emph{phpunit} foi a opção escolhida para este projeto. Esta ferramenta é atualmente a que possui mais recursos e está presente na comunidade desde 2001.
 
-Estendendo a classe base do \emph{phpunit} por meio do princípio da herança, se torna possível realizar o teste de um método de uma classe, ou da própria classe inteira. Para o caso de um método, por exemplo, é necessário desenvolver um método testador que contenha a execução do método original a ser testado e as nomeadas \emph{condições de controle}, que são os valores de entrada e esperados. O retorno do método original é então comparado com o valor esperado, informando se o teste obteve alguma falha. Na ausência de falhas, o teste é classificado como aprovado. Na figura \ref{fig:phpunit-framework} pode ser visto um exemplo simples deste processo.
+Antes de dar início a descrição do \emph{phpunit}, é importante definir um conceito criado neste trabalho que é frequentemente utilizado ao longo desta seção. Para agrupar os parâmetros que são utilizados para implantação de testes unitários, como os valores de entrada ou os valores de saída esperados ao realizar o teste, é utilizado o termo \emph{condições de controle}. Ao testar um método por exemplo, pode ser necessário declarar um valor que será o argumento de entrada, assim como o valor esperado de retorno. Estes valores são portanto as \emph{condições de controle} para este teste unitário.
+
+Para realizar o teste de um método de uma classe, ou da própria classe inteira, é preciso estender a classe abstrata base do \emph{phpunit} por meio do princípio da herança. Para o caso de um método, por exemplo, é necessário desenvolver um método testador que contenha a execução do método original a ser testado e as nomeadas \emph{condições de controle}. O retorno do método original é então comparado com o valor esperado, informando se o teste obteve alguma falha. Na ausência de falhas, o teste é classificado como aprovado. Na figura \ref{fig:phpunit-framework} pode ser visto um exemplo simples deste processo.
 
 \begin{figure}[H]
     \centering
@@ -31,9 +33,9 @@ No contexto da teoria de testes, cada método testador é definido como \emph{~t
 \hypertarget{busca-por-padronizacao-e-concisao}{%
 \subsubsection{Busca por padronização e concisão}\label{busca-por-padronizacao-e-concisao}}
 
-No passado, alguns testes de unidade foram experimentalmente desenvolvidos pelo grupo com o propósito de incorporar a prática no futuro junto ao processo de desenvolvimento. Entretanto com o crescimento do número de testes foi possível identificar pontos a serem aprimorados. Foi analisado que a escrita dos testes poderia ser padronizada e otimizada. Viu-se a oportunidade em adaptar setores do \emph{framework} para o contexto do grupo, podendo tornar mais econômico e mais rápido para o desenvolvedor desenvolver testes rotineiramente.
+No passado, alguns testes de unidade foram experimentalmente desenvolvidos pelo grupo com o propósito de incorporar a prática no futuro junto ao processo de desenvolvimento. Com o crescimento do número de testes elaborados foi possível identificar pontos a serem aprimorados. Foi analisado que a escrita dos testes poderia ser padronizada e otimizada. Viu-se a oportunidade em adaptar setores do \emph{framework} para o contexto do grupo, podendo tornar mais econômico e mais rápido para o programador desenvolver testes rotineiramente.
 
-Notou-se a possibilidade de melhoria na organização nos \emph{test cases} e suas \emph{condições de controle}. No exemplo anterior e como era feito inicialmente pelos desenvolvedores do grupo, estas condições eram definidas juntamente com a lógica do teste, ou seja, no mesmo código, podendo inclusive ocorrer repetições entre testes que possuíssem as mesmas condições. Esta implementação é satisfatória para uma certa ordem de grandeza de testes, porém quando se passa a ter milhares de testes unitários, dificulta-se a manutenção destes testes. O desenvolvedor precisa procurar em que linhas de código a \emph{condição de controle} foi definida, sem indicativos claros de sua localização e sem uma padronização de como esta condição foi estabelecida. Idealmente as \emph{condições de controle} deveriam estar desatreladas da lógica do teste, sem repetições e seguindo um padrão claro, que facilite a compreensão e manutenção.
+Notou-se a possibilidade de melhoria na organização nos \emph{test cases} e suas \emph{condições de controle}. No exemplo anterior e como era feito inicialmente pelos desenvolvedores do grupo, estas condições eram definidas juntamente com a lógica do teste, ou seja, no mesmo código, podendo inclusive ocorrer repetições entre testes que possuíssem as mesmas condições. Esta implementação é satisfatória para uma certa ordem de grandeza de testes, porém quando se passa a ter milhares de testes unitários, dificulta-se a manutenção dos mesmos. O desenvolvedor precisa procurar em que linhas de código a \emph{condição de controle} foi definida, sem indicativos claros de sua localização e sem uma padronização de como esta condição foi estabelecida. Idealmente as \emph{condições de controle} deveriam estar desatreladas da lógica do teste, sem repetições e seguindo um padrão claro, que facilite a compreensão e manutenção.
 
 Para facilitar o desenvolvimento dos testes pelos programadores, percebeu-se também a possibilidade de simplificar procedimentos mais complexos. Isso ocorre principalmente na simulação de objetos, conhecidos como \emph{mocks}. Para testes unitários simples, em que não ocorre chamadas a outros métodos da classe, \emph{mocks} são desnecessários. Contudo, na maioria dos casos, um método a ser testado possuirá chamadas a outros métodos da mesma classe, e levando em consideração os princípios da prática de teste unitário, o comportamento destas chamadas precisa ser controlado. Um teste unitário não pode possuir dependências externas, como a outros métodos que podem ter comportamentos imprevisíveis, pois isso prejudicaria a natureza modular do teste. Portanto conclui-se que \emph{mocks} são necessários, e apesar do \emph{phpunit} possuir funcionalidades nativas para criá-los, grande parte dos comandos podem ser simplificados, reduzindo a prolixidade da escrita.
 
@@ -44,14 +46,23 @@ Levando em consideração principalmente estes dois motivos, foi proposta a impl
 
 \emph{FUnit} foi inspirado nos princípios seguidos pelo próprio \emph{Fence}. Através do \emph{Fence}, os parâmetros sujeitos a mudanças constantes são abstraídos em arquivos de configuração, de modo que até mesmo o próprio usuário possa ser capaz de alterá-los em certos casos. A premissa é semelhante ao \emph{FUnit}, na medida que as \emph{condições de controle} são exteriorizadas em um arquivo \emph{JSON}. Dessa forma, torna-se possível para o desenvolvedor alterar o valor de entrada ou da saída esperada sem a necessidade de alterar o código do próprio teste.
 
-O Fence Unit Test constitui um \emph{namespace}, \emph{/Fence/UnitTest}, o qual possui uma classe principal, a \emph{TestCase}, responsável pela maior parte da lógica do \emph{framework}, e a classe secundária, \emph{Assert}, encarregado de asserções. Juntamente com a orientação a objetos, estas classes foram escritas baseando-se parcialmente no paradigma funcional, evitando mudanças de estado e dados mutáveis. Optou-se pela estruturação em pequenos métodos, dependentes apenas de seus argumentos, e gerar novas variáveis ao invés de reutilizá-las.
+Na figura \ref{fig:funit-class-diagram} encontra-se o diagrama contendo as classes que serão referenciadas nesta seção. O \emph{Fence Unit Test} é constituído apenas de duas classes. Sua classe principal, a \emph{TestCase}, responsável pela maior parte da lógica do \emph{framework}, e a classe secundária, \emph{Assert}, encarregado de asserções. Juntamente com a orientação a objetos, estas classes foram escritas baseando-se parcialmente no paradigma funcional, evitando mudanças de estado e dados mutáveis. Optou-se pela estruturação em pequenos métodos, dependentes apenas de seus argumentos, e gerar novas variáveis ao invés de reutilizá-las.
 
-Aplicou-se também dois princípios da filosofia \emph{SOLID} para o \emph{FUnit}. Primeiramente foi utilizado o princípio da inversão de dependências, no qual as classes desenvolvidas possuem dependência apenas de outras classes abstratas, e o princípio da responsabilidade única, de modo que os métodos foram planejados para cumprirem unicamente uma tarefa.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{source/4-solucao/images/funit-class-diagram.png}
+    \caption{Diagrama de classes da \emph{FUnit}, classes auxiliares e classes de uso.}
+    \label{fig:funit-class-diagram}
+\end{figure}
 
-Com o objetivo de dar mais opções na escrita de arquivos de configuração, foi implementado uma classe auxiliar de processamento de arquivos \emph{JSON} chamada \emph{JProcessor}. Esta classe interpreta o arquivo de configuração realizando mudanças de acordo com certas regras. Ações como capacitação de comentários, substituição de variáveis globais, concatenação de arquivos de configuração e execução de funções \emph{callback} são possíveis por meio da classe \emph{JProcessor}, se tornando um utilitário que é utilizado pelos desenvolvedores para além do desenvolvimento de testes.
+Aplicou-se também dois princípios da filosofia \emph{SOLID} para o \emph{FUnit}. Primeiramente foi utilizado o princípio da inversão de dependências, no qual uma classe de testes possui dependência apenas das classes abstratas da \emph{FUnit}, \emph{TestCase} e \emph{Assert}. Também foi utilizado o princípio da responsabilidade única, de modo que os métodos foram planejados para cumprirem unicamente uma tarefa.
+
+Um conceito importante para a compreensão da \emph{FUnit} é o de arquivos de configuração em \emph{JSON}. Arquivos \emph{JSON} se comportam como dicionários estruturados em chave e valor. A flexibilidade do \emph{JSON} em aceitar diversos tipos de valores permite a representação de várias estruturas de dados, como listas e objetos. Por este motivo foi decidido em parametrizar as \emph{condições de controle} nestes arquivos.
+
+Com o objetivo de dar mais opções na escrita de arquivos de configuração, foi implementado uma classe auxiliar de processamento de arquivos \emph{JSON} chamada \emph{JProcessor}. Esta classe interpreta o arquivo de configuração realizando mudanças de acordo com certas regras. Ações como capacitação de comentários, substituição de variáveis globais, concatenação de arquivos de configuração e execução de funções \emph{callback} são possíveis por meio da classe \emph{JProcessor}, se tornando um utilitário para os desenvolvedores para além do desenvolvimento de testes.
 
 \hypertarget{como-desenvolver-um-teste-unitario}{%
-\subsubsection{Como desenvolver um teste unitário}\label{como-desenvolver-um-teste-unitario}}
+\subsubsection{Como desenvolver um teste unitário: casos de uso}\label{como-desenvolver-um-teste-unitario}}
 
 Observando o funcionamento interno da \emph{FUnit} é possível identificar as etapas bem definidas ao longo do processo de desenvolvimento de testes, como presente na figura \ref{fig:funit-phpunit}. Definido o método a ser testado, considerado como requisito, é possível dar início ao processo de desenvolvimento do teste. Em resumo, \emph{condições de controle} são declaradas em arquivos de configuração e interpretados por uma classe auxiliar que as disponibiliza para a escrita da lógica do teste. Os testes são então executados e validados, gerando um relatório final com os resultados.
 
@@ -113,4 +124,4 @@ Por fim tem-se no \emph{FUnit} a possibilidade de compartilhar propriedades em c
     \label{fig:funcionalidades-add}
 \end{figure}
 
-Discutida as principais características do \emph{framework} \emph{FUnit}, a próxima seção discute o framework \emph{Fate}, voltado para testes \emph{e2e}.
+Discutida as principais características do \emph{framework} \emph{FUnit}, a próxima seção discute o framework \emph{Fate}, voltado para testes \emph{end-to-end}.
